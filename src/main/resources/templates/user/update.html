@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input { padding: 3px; }
+    </style>
+</head>
+<body style="margin: 50px;">
+<h1>사용자 수정</h1>
+<hr>
+<form action="/users/update" method="post">
+    <input type="text" name="id" th:value="${user.id}" disabled /><br><br>
+    <input type="text" name="username" th:value="${user.username}" /><br><br>
+    <input type="password" name="password" placeholder="패스워드" /><br><br>
+    <input type="password" name="rePassword" placeholder="패스워드 확인" /><br><br>
+    <input type="text" name="email" th:value="${user.email}" /><br><br>
+    <select name="roleName" th:field="${user.role}">
+        <option th:each="role: ${T(net.likelion.backendschoolplus.entity.UserRole).values}"
+                th:value="${role}"
+                th:text="${role.displayName}"></option>
+    </select><br><br>
+    <input type="text" th:value="${user.registrationDate}" disabled><br><br>
+    <input type="submit" value="수정">
+</form>
+</body>
+</html>
